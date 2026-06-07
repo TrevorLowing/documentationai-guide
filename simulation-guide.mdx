@@ -1,0 +1,83 @@
+---
+title: Simulation Guide
+description: Step-by-step walkthrough of building your SSP, running assessments, and handling real-world RMF scenarios in the platform.
+---
+
+## Overview
+
+RMF Coach guides you through a complete FedRAMP Moderate authorization cycle. You configure a cloud system, select controls, write implementation narratives, respond to evidence probes, and finalize an authorization decision. The platform mirrors real NIST SP 800-53 Rev 5 workflows so your decisions translate directly to live engagements.
+
+<Callout kind="info">
+  Always review the system primer before selecting controls. Inheritance decisions made here affect the entire Customer Responsibility Matrix.
+</Callout>
+
+## Phase 1: Configure Your System
+
+Begin by selecting a deployment scenario and reviewing inherited controls.
+
+<Steps>
+  <Step title="Choose scenario" icon="cloud">
+    Select a cloud provider and baseline. The platform loads a pre-populated system security plan with 120+ controls.
+  </Step>
+  <Step title="Review the CRM" icon="list">
+    Examine the Customer Responsibility Matrix. Identify controls your organization owns versus those inherited from the CSP.
+  </Step>
+  <Step title="Adjust boundaries" icon="settings">
+    Update system boundaries and data flows. Changes automatically propagate to control applicability.
+  </Step>
+</Steps>
+
+## Selecting Implementation Narratives
+
+Strong narratives describe how each control is implemented, not just restate requirements.
+
+<Columns cols={2}>
+  <Card title="AC-2 Account Management" icon="users" href="#narratives">
+    Define procedures for account provisioning, periodic review, and revocation within 24 hours of termination.
+  </Card>
+  <Card title="AU-2 Audit Events" icon="file-text" href="#narratives">
+    Specify which events are logged, retention periods, and integration with your SIEM solution.
+  </Card>
+</Columns>
+
+<Tabs>
+  <Tab title="Strong Example" icon="check-circle">
+    ````text
+    The organization provisions privileged accounts through a formal access request workflow in ServiceNow. Requests require manager approval and ISSO review. Accounts are reviewed quarterly; inactive accounts are disabled after 45 days. Revocation occurs within 4 hours of termination notification via automated HR feed.
+    ````
+  </Tab>
+  <Tab title="Weak Example" icon="x-circle">
+    ````text
+    We manage accounts according to policy.
+    ````
+  </Tab>
+</Tabs>
+
+## Working Through Evidence Probes
+
+After narrative submission, the platform generates evidence probes and method questions.
+
+<Expandable title="Sample probe: AC-2(1)" default-open="false">
+  The assessor asks: "Provide the last quarterly account review report and evidence of automated revocation for terminated users."
+
+  Respond with:
+  - CSV export from the identity system
+  - Screenshot of the HR integration dashboard
+  - Policy reference showing the 24-hour revocation SLA
+</Expandable>
+
+## Updating the POA&M and Authorization
+
+Track findings in the Plan of Action and Milestones. When all high-risk items reach "completed" status, you submit for authorization.
+
+```json
+{
+  "poam_item": "AC-2-001",
+  "weakness": "Quarterly review process not documented",
+  "status": "in-progress",
+  "scheduled_completion": "2025-03-15",
+  "milestone": "Draft procedure and obtain ISSO approval"
+}
+```
+
+Once the POA&M is current, the Authorizing Official reviews the package. You receive one of three decisions: authorized, authorized with conditions, or denied. The simulation logs every decision for after-action review.

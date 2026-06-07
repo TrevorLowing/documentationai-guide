@@ -1,0 +1,63 @@
+---
+title: Core Concepts
+description: Learn the foundational NIST RMF and FedRAMP concepts used throughout the simulation, including controls, inheritance, and authorization decisions.
+---
+
+## Overview
+
+RMF Coach simulates the complete NIST Risk Management Framework process for FedRAMP Moderate authorizations. You work with real NIST SP 800-53 Rev 5 controls, build implementation narratives, and make authorization decisions that mirror live federal cloud projects.
+
+## NIST SP 800-53 Rev 5 Control Families
+
+The simulation uses the same control families you encounter in actual FedRAMP packages. Each family contains controls that address specific security and privacy requirements.
+
+<Columns cols={2}>
+  <Card title="Access Control (AC)" icon="lock" href="#access-control">
+    Manage user permissions and account management across your cloud environment.
+  </Card>
+  <Card title="Audit and Accountability (AU)" icon="file-text" href="#audit">
+    Configure logging, monitoring, and event retention policies.
+  </Card>
+  <Card title="Identification and Authentication (IA)" icon="user-check" href="#identification">
+    Implement multi-factor authentication and credential management.
+  </Card>
+  <Card title="System and Communications Protection (SC)" icon="shield" href="#protection">
+    Define encryption, boundary protection, and network controls.
+  </Card>
+</Columns>
+
+## Customer vs. CSP Responsibility
+
+Understanding inheritance is critical. You must correctly identify which controls your organization owns, which the cloud service provider manages, and which are fully inherited.
+
+<Tabs>
+  <Tab title="Customer Owned" icon="user">
+    These controls require you to write SSP implementation narratives. Examples include AC-2 Account Management and AU-6 Audit Review.
+  </Tab>
+  <Tab title="CSP Shared" icon="cloud">
+    Controls where both parties share responsibility. You document the customer portion while referencing the provider's FedRAMP authorization.
+  </Tab>
+  <Tab title="Fully Inherited" icon="arrow-down">
+    Controls you inherit entirely from the CSP. No implementation narrative is required, but you must still verify the inheritance path.
+  </Tab>
+</Tabs>
+
+## SSP Implementation Narratives
+
+Your SSP narratives must meet quality gates before advancing. The simulation evaluates narrative completeness, control applicability, and alignment with the Customer Responsibility Matrix.
+
+<Callout kind="info">
+  Strong narratives include specific implementation details, responsible roles, and evidence artifacts rather than generic policy statements.
+</Callout>
+
+## POA&M, Findings, and Authorization Decisions
+
+After assessment, you manage Plan of Action and Milestones entries for any findings.
+
+<Expandable title="How POA&M entries are created" default-open="false">
+  The simulation generates findings based on your control responses. You then create POA&M items with scheduled completion dates, resources required, and milestones. Authorization decisions depend on the severity and remediation timeline of open items.
+</Expandable>
+
+## Next Steps
+
+Practice these concepts in the simulation to build intuition before working on real FedRAMP packages.
